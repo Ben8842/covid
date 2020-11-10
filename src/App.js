@@ -30,31 +30,38 @@ class App extends Component {
   };
 
   /* optional customization of filling per state and calling custom callbacks per state */
+ 
   statesFilling = () => {
+    var {isLoaded, items } = this.state;
+    let x = 0;
+    let y = '';
+    while (x < 50) {
+      x++;
+      if (items[x].state === "TX") {
+        y = items[x].positive;
+      }
+    }
+
+    
     return {
       "TX": {
         fill: "yellow",
-      clickHandler: () => alert("7500 cases")
+      clickHandler: () => alert("The state of Texas has " + y + " Positive Cases" )
       }
     };
   };
 
   render() {
-    
-    
-    console.log("hello")
     var {isLoaded, items } = this.state;
-
     if (!isLoaded) {
       return <div>Loading...</div>;
-    }
-    
+    }  
     else {
-
       return (
         <div className="App">
          
           <h1>Covid Cases by State</h1>
+          <h6>Click on a state to see how many positive Corona cases it has</h6>
           <USAMap customize={this.statesFilling()} onClick={this.mapHandler} />
           
             <ul>
