@@ -9,9 +9,12 @@ class App extends Component {
   };
 
   /* optional customization of filling per state and calling custom callbacks per state */
-  statesCustomConfig = () => {
+  statesFilling = () => {
     return {
-     
+      "TX": {
+        fill: "yellow",
+      clickHandler: () => alert("7500 cases")
+      }
     };
   };
 
@@ -19,7 +22,7 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Covid Cases by State</h1>
-        <USAMap customize={this.statesCustomConfig()} onClick={this.mapHandler} />
+        <USAMap customize={this.statesFilling()} onClick={this.mapHandler} />
       </div>
     );
   }
