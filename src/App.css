@@ -5,3 +5,13 @@ path:hover {
   opacity: 0.5;
   cursor: pointer;
 }
+h1 {
+  width: 1000px;
+  background: yellow;
+  text-align: center;
+}
+h6 {
+  width: 1000px;
+  background: lightgrey;
+  text-align: center;
+}
