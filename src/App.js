@@ -61,7 +61,7 @@ class App extends Component {
         <div className="App">
          
           <h1>Covid Cases by State</h1>
-          <h6>Click on a state to see how many positive Corona cases it has</h6>
+          <h4>Click on a state to see how many positive Corona cases it currently has</h4>
           <USAMap customize={this.statesFilling()} onClick={this.mapHandler} />
           
             <ul>

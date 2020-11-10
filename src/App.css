@@ -7,11 +7,17 @@ path:hover {
 }
 h1 {
   width: 1000px;
-  background: yellow;
+  color: white;
   text-align: center;
 }
-h6 {
+h4 {
   width: 1000px;
-  background: lightgrey;
+  color: white;
   text-align: center;
+}
+body {
+  background-color: darkblue;
+}
+li {
+  color: white;
 }
