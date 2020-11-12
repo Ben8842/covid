@@ -7,30 +7,70 @@ function ModalTime() {
   const [modalIsOpen, setModalIsOpen] = useState(false)
   return (
     <div className="ModalTime">
-      <button onClick={() => setModalIsOpen(true)}>Open super awesome Modal</button>
+      <button onClick={() => setModalIsOpen(true)}>Open  Modal</button>
     <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
       <h2>Modal HELLOOWHELO</h2>
-      <p>body of mOdal oh yeah</p>
+      <p>body of mOdal yes</p>
       <div>
-        <button onClick={() => setModalIsOpen(false)}>close super fun modal</button>
+        <button onClick={() => setModalIsOpen(false)}>close super modal</button>
       </div>
     </Modal>
     </div>
   );
 }
 
+function Openmodaltest () {
+  const [modalIsOpen, setModalIsOpen] = useState(false)
+  setModalIsOpen(true)
+}
+
+//here was trying to create function or something that gets triggered by 
+//clickHandler, but so far nothing works
+/*let box = 0;
+function boxy() {
+  box++;
+  console.log(box)
+  return
+}
+function Great() {
+  if (box==1) {
+  console.log('Hi again')
+  return (
+    <div classname='Great'>
+      
+      <h2>So much Covid data is right here and also this below</h2>
+      <h1>  This Here</h1>
+    </div>
+  );
+}
+
+else return (
+  
+  <div classname='Great'>
+      
+  <h2>not yet</h2>
+  <h1>  This Here</h1>
+</div>
+);
+box++;
+
+}*/
+
 
 class App extends Component {
   
    constructor(props) {
+    
      super(props);
      this.state = {
        items: [],
        isLoaded: false,
      }
+    
    }
    
    componentDidMount() {
+    
      fetch('https://api.covidtracking.com/v1/states/current.json')
      .then(res => res.json())
      .then(json => {
@@ -45,6 +85,7 @@ class App extends Component {
 
   /* mandatory */
   mapHandler = (event) => {
+    
     alert(event.target.dataset.name);
   };
 
@@ -65,7 +106,8 @@ class App extends Component {
     return {
       "TX": {
         fill: "yellow",
-      clickHandler: () => alert("The state of Texas has " + y + " Positive Cases" )
+        clickHandler: Openmodaltest()
+     //   clickHandler: () => alert("The state of Texas has " + y + " Positive Cases" )
       }
     };
   };
@@ -73,13 +115,20 @@ class App extends Component {
  
 
   render() {
-   
+    
     var {isLoaded, items } = this.state;
     if (!isLoaded) {
       return <div>Loading...</div>;
     }  
     else {
+      
+  
       return (
+
+        <div className="Great">
+
+         <hr></hr>
+       
 
         <div className="ModalTime">
 
@@ -103,6 +152,7 @@ class App extends Component {
               ))};
               
             </ul>
+        </div>
         </div>
         </div>
       );
