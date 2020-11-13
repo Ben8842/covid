@@ -2,6 +2,8 @@ import React, { Component, useState } from 'react';
 import './App.css'; /* optional for styling like the :hover pseudo-class */
 import USAMap from "react-usa-map";
 import Modal from 'react-modal'
+import Test2 from './Test.js'
+
 
 function ModalTime() {
   const [modalIsOpen, setModalIsOpen] = useState(false)
@@ -24,49 +26,38 @@ function Openmodaltest () {
   setModalIsOpen(true)
 }
 
-//here was trying to create function or something that gets triggered by 
-//clickHandler, but so far nothing works
-/*let box = 0;
-function boxy() {
-  box++;
-  console.log(box)
-  return
-}
-function Great() {
-  if (box==1) {
-  console.log('Hi again')
+function Testh () {
   return (
-    <div classname='Great'>
-      
-      <h2>So much Covid data is right here and also this below</h2>
-      <h1>  This Here</h1>
+    <div className="Testh">
+    <h1>Test</h1>
     </div>
   );
 }
 
-else return (
-  
-  <div classname='Great'>
-      
-  <h2>not yet</h2>
-  <h1>  This Here</h1>
-</div>
-);
-box++;
-
-}*/
-
 
 class App extends Component {
-  
+
    constructor(props) {
     
      super(props);
      this.state = {
        items: [],
        isLoaded: false,
+       name: "Helper",
+       showHideTest: false
      }
-    
+    this.hideComponent = this.hideComponent.bind(this);
+   }
+
+   hideComponent(name) {
+     console.log("working it" + name.value);
+     switch (name) {
+       case "showHideTest":
+         this.setState({ showHideTest: !this.state.showHideTest });
+         break;
+         default:
+         
+     }
    }
    
    componentDidMount() {
@@ -106,38 +97,41 @@ class App extends Component {
     return {
       "TX": {
         fill: "yellow",
-        clickHandler: Openmodaltest()
-     //   clickHandler: () => alert("The state of Texas has " + y + " Positive Cases" )
+       // clickHandler: Openmodaltest()
+       clickHandler: () => this.hideComponent("showHideTest")
+       //clickHandler: () => alert("The state of Texas has " + y + " Positive Cases" )
       }
     };
   };
 
- 
-
   render() {
     
-    var {isLoaded, items } = this.state;
+    var {isLoaded, items, showHideTest } = this.state;
     if (!isLoaded) {
       return <div>Loading...</div>;
     }  
     else {
       
-  
       return (
 
-        <div className="Great">
+        <div className="Testh">
+        <Testh>hi</Testh>
 
          <hr></hr>
-       
-
+        
+         <div>
+         {showHideTest && <Test2 />}
+        <div>
+        <button onClick={() => this.hideComponent("showHideTest")}>
+            Click to hide Test2 component
+          </button>
+</div>
+</div>
         <div className="ModalTime">
 
           <ModalTime>Hello World</ModalTime>
       
         <div className="App">
-
-        
-         
           <h1>Covid Cases by State</h1>
           <h4>Click on a state to see how many positive Corona cases it currently has</h4>
           <USAMap customize={this.statesFilling()} onClick={this.mapHandler} />
