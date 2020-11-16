@@ -3,6 +3,9 @@ import "./App.css"; /* optional for styling like the :hover pseudo-class */
 import USAMap from "react-usa-map";
 import Modal from "react-modal";
 import Test2 from "./Test.js";
+import Modata from "./Modata.js";
+import Modals from "./Component/Modal";
+import "./styles.css";
 
 function ModalTime() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -36,6 +39,14 @@ function Testh() {
 }
 
 class App extends Component {
+  state = {
+    show: false,
+  };
+  showModal = (e) => {
+    this.setState({
+      show: !this.state.show,
+    });
+  };
   constructor(props) {
     super(props);
     this.state = {
@@ -91,7 +102,10 @@ class App extends Component {
       TX: {
         fill: "yellow",
         // clickHandler: Openmodaltest()
-        clickHandler: () => this.hideComponent("showHideTest"),
+        // clickHandler: () => this.hideComponent("showHideTest"),
+        clickHandler: (e) => {
+          this.showModal(e);
+        },
         //clickHandler: () => alert("The state of Texas has " + y + " Positive Cases" )
       },
     };
@@ -116,29 +130,50 @@ class App extends Component {
               </button>
             </div>
           </div>
-          <div className="ModalTime">
-            <ModalTime>Hello World</ModalTime>
+          <div className="Modata">
+            <Modata>Hello World</Modata>
+            <div className="ModalTime">
+              <ModalTime>Hello World</ModalTime>
 
-            <div className="App">
-              <h1>Covid Cases by State</h1>
-              <h4>
-                Click on a state to see how many positive Corona cases it
-                currently has
-              </h4>
-              <USAMap
-                customize={this.statesFilling()}
-                onClick={this.mapHandler}
-              />
+              <div className="App">
+                <button
+                  class="toggle-button"
+                  id="centered-toggle-button"
+                  onClick={(e) => {
+                    this.showModal(e);
+                  }}
+                >
+                  {" "}
+                  show Modal{" "}
+                </button>
 
-              <ul>
-                DATA HAS BEEN LOADED
-                {items.map((item) => (
-                  <li key={item.id}>
-                    Positive Cases: {item.positive} | State: {item.state}
-                  </li>
-                ))}
-                ;
-              </ul>
+                <Modals onClose={this.showModal} show={this.state.show}>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  Nobis deserunt corrupti, ut fugit magni qui quasi nisi amet
+                  repellendus non fuga omnis a sed impedit explicabo accusantium
+                  nihil doloremque consequuntur.
+                </Modals>
+
+                <h1>Covid Cases by State</h1>
+                <h4>
+                  Click on a state to see how many positive Corona cases it
+                  currently has
+                </h4>
+                <USAMap
+                  customize={this.statesFilling()}
+                  onClick={this.mapHandler}
+                />
+
+                <ul>
+                  DATA HAS BEEN LOADED
+                  {items.map((item) => (
+                    <li key={item.id}>
+                      Positive Cases: {item.positive} | State: {item.state}
+                    </li>
+                  ))}
+                  ;
+                </ul>
+              </div>
             </div>
           </div>
         </div>
